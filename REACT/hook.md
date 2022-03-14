@@ -152,9 +152,29 @@ diff 算法只会比较再会在同层级进行比较， 不会跨层级比较 D
 遍历结束时机 oldS > oldE, newS > newE
 
 oldS 和 newS 使用 sameVnode 方法进行比较，sameVnode(oldS, newS)， oldS++, newS++
-oldS 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldS, newE),  oldS++, newE--
-oldE 和 newS 使用 sameVnode 方法进行比较，sameVnode(oldE, newS),  oldE--, newS++
-oldE 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldE, newE),  oldE--, newE--
+oldS 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldS, newE), oldS++, newE--
+oldE 和 newS 使用 sameVnode 方法进行比较，sameVnode(oldE, newS), oldE--, newS++
+oldE 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldE, newE), oldE--, newE--
 
-如果以上逻辑都匹配不到，在吧所有旧子节点的key 做一个 映射到旧节点下标的 key -> index 表，然后用新的vnode的key去找出在旧节点中可以复用的位置。
+如果以上逻辑都匹配不到，在吧所有旧子节点的 key 做一个 映射到旧节点下标的 key -> index 表，然后用新的 vnode 的 key 去找出在旧节点中可以复用的位置。
 
+4. 生命周期
+
+- 装载阶段（Mount），组件第一次在 DOM 树中被渲染的过程；
+  挂载阶段组件被创建，然后组件实例插入到 DOM 中，完成组件的第一次渲染，该过程只会发生一次，在此阶段会依次调用以下这些方法：
+
+  constructor
+  getDerivedStateFromProps
+  render
+  componentDidMount
+
+- 更新过程（Update），组件状态发生变化，重新更新渲染的过程；
+  static getDerivedStateFromProps(newProps, preState)
+  shouldComponentUpdate(nextProps, nextState)
+  render
+  getSnapshotBeforeUpdate(prevProps, prevState)
+  componentDidUpdate(prevProps, prevState, snapshot){}
+- 卸载过程（Unmount），组件从 DOM 树中被移除的过程；
+  componentWillUnmount()
+  清除 timer，取消网络请求或清除
+  取消在 componentDidMount() 中创建的订阅等；
