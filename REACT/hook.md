@@ -158,7 +158,7 @@ oldE 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldE, newE), oldE-
 
 如果以上逻辑都匹配不到，在吧所有旧子节点的 key 做一个 映射到旧节点下标的 key -> index 表，然后用新的 vnode 的 key 去找出在旧节点中可以复用的位置。
 
-4. 生命周期
+### 生命周期
 
 - 装载阶段（Mount），组件第一次在 DOM 树中被渲染的过程；
   挂载阶段组件被创建，然后组件实例插入到 DOM 中，完成组件的第一次渲染，该过程只会发生一次，在此阶段会依次调用以下这些方法：
@@ -178,3 +178,34 @@ oldE 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldE, newE), oldE-
   componentWillUnmount()
   清除 timer，取消网络请求或清除
   取消在 componentDidMount() 中创建的订阅等；
+
+### 状态管理
+
+redux VS mobx
+
+redux
+数据不可变，只可读
+单一数据源
+纯函数 Reducer 来修改状态
+
+redux 中间件
+redux-thunk
+
+```jsx
+function createThunkMiddleware(extraArgument) {
+  return ({ dispatch, getState }) =>
+    (next) =>
+    (action) => {
+      if (typeof action === "function") {
+        return action(dispatch, getState, extraArgument);
+      }
+
+      return next(action);
+    };
+}
+```
+
+redux-saga 借助 generate 函数
+提供了许多方法 takeEvery takeLast put call fork
+toolkit
+不需要写太多的模版代码
