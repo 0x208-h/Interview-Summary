@@ -129,6 +129,7 @@ export function render() {
 }
 ```
 
+// 可以有问题
 ## diff 算法
 
 diff 算法只会比较再会在同层级进行比较， 不会跨层级比较 DFS O(n)
@@ -156,7 +157,7 @@ oldS 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldS, newE), oldS+
 oldE 和 newS 使用 sameVnode 方法进行比较，sameVnode(oldE, newS), oldE--, newS++
 oldE 和 newE 使用 sameVnode 方法进行比较，sameVnode(oldE, newE), oldE--, newE--
 
-如果以上逻辑都匹配不到，在吧所有旧子节点的 key 做一个 映射到旧节点下标的 key -> index 表，然后用新的 vnode 的 key 去找出在旧节点中可以复用的位置。
+如果以上逻辑都匹配不到，在把所有旧子节点的 key 做一个 映射到旧节点下标的 key -> index 表，然后用新的 vnode 的 key 去找出在旧节点中可以复用的位置。
 
 ### 生命周期
 
@@ -209,3 +210,13 @@ redux-saga 借助 generate 函数
 提供了许多方法 takeEvery takeLast put call fork
 toolkit
 不需要写太多的模版代码
+
+### react fiber
+
+react fiber 是可以将 react 的渲染过程中断的，把控制权交还给浏览器，现执行高优任务，等到浏览器有空的时候 react 在进行渲染。
+
+### hooks 的好处
+
+```http
+https://7kms.github.io/react-illustration-series/
+```
