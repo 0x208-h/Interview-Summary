@@ -86,3 +86,36 @@ h.peek();
 h.size();
 console.log(h.peek()); // 2
 console.log(h.size()); // 3
+
+
+// const heap = heapify([...nums]);
+    
+// let res = 0;
+// while (k--) {
+//     res += heap[0];
+//     heap[0] = Math.ceil(heap[0] / 3);
+//     sink(heap, 0);
+// }
+// return res;
+
+
+// function heapify(origin: number[]) {
+//     for (let i = Math.floor(origin.length / 2) - 1; i >= 0; i--) {
+//         sink(origin, i);
+//     }
+//     return origin;
+// }
+
+// function sink(heap: number[], i: number) {
+//     while (i * 2 + 1 < heap.length) {
+//         let index = i * 2 + 1;
+//         if (index + 1 < heap.length && heap[index] < heap[index + 1]) {
+//             index++;
+//         }
+//         if (heap[index] < heap[i]) {
+//             break;
+//         }
+//         [heap[index], heap[i]] = [heap[i], heap[index]];
+//         i = index;
+//     }
+// }
